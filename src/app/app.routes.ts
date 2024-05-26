@@ -13,4 +13,12 @@ export const routes: Routes = [
       ),
     title: 'Iniciar sesión',
   },
+  {
+    path: 'create',
+    loadComponent: () =>
+      import('./components/create/create.component').then(
+        (c) => c.CreateComponent
+      ),
+    title: 'Alta Repartidor',
+  },
 ];

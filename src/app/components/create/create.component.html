@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Alta repartidor</h2>
+  </div>
+
+  <div class="row">
+    <app-table class="col-md-4 order-md-2 mb-4" />
+
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Ingrese los datos:</h4>
+      <form
+        class="needs-validation"
+        [formGroup]="form"
+        (ngSubmit)="createDeliveryPerson()"
+      >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder=""
+              value=""
+              required
+              formControlName="name"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni">DNI</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dni"
+              placeholder=""
+              value=""
+              required
+              formControlName="dni"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="age">Edad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="age"
+            formControlName="age"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="transportCapacity">
+            Capacidad de transporte (en unidades)
+          </label>
+          <input
+            type="number"
+            class="form-control"
+            id="transportCapacity"
+            formControlName="transportCapacity"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="country">País de origen</label>
+          <input
+            type="text"
+            class="form-control"
+            id="country"
+            formControlName="country"
+            required
+          />
+        </div>
+
+        <!-- Mensajes de error y éxito -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+
+        <h4 class="mb-3">¿Es unidad propia?</h4>
+        <div class="custom-control custom-radio">
+          <input
+            id="unit"
+            name="unit"
+            type="radio"
+            class="custom-control-input"
+            value="true"
+            required
+            (change)="checkUnit($event)"
+            formControlName="ownUnit"
+          />
+          <label class="custom-control-label" for="unit">Sí</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="unit2"
+            name="unit"
+            type="radio"
+            class="custom-control-input"
+            value="false"
+            required
+            (change)="checkUnit($event)"
+            formControlName="ownUnit"
+          />
+          <label class="custom-control-label" for="unit2">No</label>
+        </div>
+
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Crear
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
