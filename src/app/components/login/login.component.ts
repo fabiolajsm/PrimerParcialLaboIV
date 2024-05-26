@@ -6,11 +6,13 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../../services/auth.service';
 import { FirebaseError } from '@angular/fire/app';
 import { authErrors } from './authErrors';
+import { CommonModule } from '@angular/common';
+import { UserInterface } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgxSpinnerModule],
+  imports: [ReactiveFormsModule, NgxSpinnerModule, CommonModule],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -26,6 +28,7 @@ export class LoginComponent {
   });
 
   errorMessage: string | null = null;
+  role: string | undefined;
 
   handleSubmit(): void {
     this.errorMessage = null;
@@ -35,24 +38,26 @@ export class LoginComponent {
       return;
     }
     this.spinner.show();
-    this.authService.login(rawForm.email, rawForm.password).subscribe({
-      next: () => {
-        this.spinner.hide();
-        this.router.navigateByUrl('');
-        this.authService.addToLoginHistory(rawForm.email);
-      },
-      error: (err: FirebaseError) => {
-        let errorMessage = 'Se produjo un error desconocido.';
-        for (const error of authErrors) {
-          if (error.code === err.code) {
-            errorMessage = error.message;
-            break;
+    this.authService
+      .login(rawForm.email, rawForm.password, this.role!)
+      .subscribe({
+        next: () => {
+          this.spinner.hide();
+          this.router.navigateByUrl('');
+          this.authService.addToLoginHistory(rawForm.email);
+        },
+        error: (err: FirebaseError) => {
+          let errorMessage = 'Se produjo un error desconocido.';
+          for (const error of authErrors) {
+            if (error.code === err.code) {
+              errorMessage = error.message;
+              break;
+            }
           }
-        }
-        this.errorMessage = errorMessage;
-        this.spinner.hide();
-      },
-    });
+          this.errorMessage = errorMessage;
+          this.spinner.hide();
+        },
+      });
   }
   handleQuickAccess(): void {
     this.spinner.show();
@@ -64,11 +69,12 @@ export class LoginComponent {
     const emailSelected =
       quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
 
-    this.authService.getUsers().subscribe((userData) => {
+    this.authService.getUsers().subscribe((userData: UserInterface[]) => {
       userData.forEach((usuario) => {
         if ((usuario as any).email == emailSelected) {
           this.form.controls['email'].setValue((usuario as any).email);
           this.form.controls['password'].setValue((usuario as any).contraseña);
+          this.role = (usuario as any).rol;
           this.spinner.hide();
         }
       });

@@ -5,9 +5,14 @@ import {
   signOut,
   user,
 } from '@angular/fire/auth';
-import { Observable, from } from 'rxjs';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import { Firestore, collectionData } from '@angular/fire/firestore';
+import { Observable, from, map } from 'rxjs';
+import { addDoc, collection } from 'firebase/firestore';
+import {
+  Firestore,
+  collectionData,
+  doc,
+  getDoc,
+} from '@angular/fire/firestore';
 import { UserInterface } from '../interfaces/user.interface';
 
 @Injectable({
@@ -20,8 +25,10 @@ export class AuthService {
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
   userNameCollection: string = 'usuarios';
   historyLoginNameCollection: string = 'historialLogin';
+  role: string = '';
 
-  login(email: string, password: string): Observable<void> {
+  login(email: string, password: string, role: string): Observable<void> {
+    this.role = role;
     const promise = signInWithEmailAndPassword(
       this.firebaseAuth,
       email,
@@ -46,5 +53,11 @@ export class AuthService {
       this.historyLoginNameCollection
     );
     addDoc(loginHistory, { email: email, date: new Date() });
+  }
+  isAuthenticated(): Observable<boolean> {
+    return this.user$.pipe(map((user) => user !== null));
+  }
+  getIsAdmin(): boolean {
+    return this.role == 'admin';
   }
 }
