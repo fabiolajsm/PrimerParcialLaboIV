@@ -1,0 +1,14 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+>
+  <p style="color: black; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
+<div class="container" id="profile" *ngIf="!isLoading && data">
+  <h1>Hola {{ data.name }} !</h1>
+  <img alt="Profile Image" [src]="data.image" />
+  <p>Ubicación: {{ data.location }}</p>
+</div>
