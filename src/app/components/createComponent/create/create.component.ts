@@ -14,7 +14,6 @@ import { TableComponent } from '../table/table.component';
   standalone: true,
   imports: [CommonModule, TableComponent, ReactiveFormsModule],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.scss',
 })
 export class CreateComponent {
   form!: FormGroup;

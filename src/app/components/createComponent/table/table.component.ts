@@ -8,19 +8,18 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss',
 })
 export class TableComponent {
   isLoading: boolean = true;
-  paises: Paises[] = [];
+  countries: Paises[] = [];
   @Output() optionSelected = new EventEmitter<string>();
-  constructor(private paisesService: PaisesService) {}
+  constructor(private countryService: PaisesService) {}
 
   ngOnInit(): void {
-    if (this.paises.length > 0) return;
+    if (this.countries.length > 0) return;
     this.isLoading = true;
-    this.paisesService.getData().subscribe((paises) => {
-      this.paises = paises;
+    this.countryService.getData().subscribe((data) => {
+      this.countries = data;
       this.isLoading = false;
     });
   }
