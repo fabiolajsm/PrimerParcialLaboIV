@@ -21,7 +21,7 @@ export const routes: Routes = [
         (c) => c.CreateComponent
       ),
     title: 'Alta Repartidor',
-    canActivate: [authGuard],
+    canMatch: [authGuard],
   },
   {
     path: 'detail',
@@ -30,6 +30,13 @@ export const routes: Routes = [
         (c) => c.DetailComponent
       ),
     title: 'Detalle Repartidor',
-    canActivate: [authGuard],
+    canMatch: [authGuard],
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./components/error/error.component').then(
+        (c) => c.ErrorComponent
+      ),
   },
 ];
