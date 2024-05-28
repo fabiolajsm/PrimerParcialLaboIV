@@ -21,7 +21,7 @@ export class CreateComponent {
   loading = true;
   errorMessage: string | undefined;
   successMessage: string | undefined;
-
+  country: string | undefined = undefined;
   ownUnit: string | undefined;
 
   constructor(private deliveryPersons: CreateService) {}
@@ -49,7 +49,6 @@ export class CreateComponent {
         Validators.pattern('^[0-9]*$'),
         Validators.required,
       ]),
-      country: new FormControl('', [Validators.required]),
       ownUnit: new FormControl('', [Validators.required]),
     });
 
@@ -70,8 +69,8 @@ export class CreateComponent {
   get transportCapacity() {
     return this.form.get('transportCapacity');
   }
-  get country() {
-    return this.form.get('country');
+  getOptionSelected(option: string) {
+    this.country = option;
   }
 
   createDeliveryPerson() {
@@ -82,7 +81,7 @@ export class CreateComponent {
         this.age?.value,
         this.transportCapacity?.value,
         this.ownUnit!,
-        this.country?.value
+        this.country!
       );
       this.showSuccessMessage();
     }
@@ -114,13 +113,13 @@ export class CreateComponent {
       this.showMessage(this.errorMessage);
       return false;
     }
-    if (!this.country) {
-      this.errorMessage = 'Debe ingresar un país válido.';
+    if (this.ownUnit === undefined) {
+      this.errorMessage = 'Debe seleccionar si posee unidad propia.';
       this.showMessage(this.errorMessage);
       return false;
     }
-    if (this.ownUnit === undefined) {
-      this.errorMessage = 'Debe seleccionar si posee unidad propia.';
+    if (this.country === undefined) {
+      this.errorMessage = 'Debe seleccionar un pais.';
       this.showMessage(this.errorMessage);
       return false;
     }

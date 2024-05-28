@@ -4,7 +4,10 @@
   </div>
 
   <div class="row">
-    <app-table class="col-md-4 order-md-2 mb-4" />
+    <app-table
+      class="col-md-4 order-md-2 mb-4"
+      (optionSelected)="getOptionSelected($event)"
+    />
 
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Ingrese los datos:</h4>
@@ -66,17 +69,6 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label for="country">País de origen</label>
-          <input
-            type="text"
-            class="form-control"
-            id="country"
-            formControlName="country"
-            required
-          />
-        </div>
-
         <!-- Mensajes de error y éxito -->
         <div *ngIf="errorMessage" class="alert alert-danger">
           {{ errorMessage }}
@@ -89,7 +81,7 @@
         <div class="custom-control custom-radio">
           <input
             id="unit"
-            name="unit"
+            name="ownUnit"
             type="radio"
             class="custom-control-input"
             value="true"
@@ -102,7 +94,7 @@
         <div class="custom-control custom-radio">
           <input
             id="unit2"
-            name="unit"
+            name="ownUnit"
             type="radio"
             class="custom-control-input"
             value="false"
