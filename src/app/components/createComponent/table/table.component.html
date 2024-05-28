@@ -1,0 +1,21 @@
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+  Seleccione el país de origen
+</h4>
+<div class="overflow-auto border border-4" style="height: 500px">
+  <ul class="list-group" *ngIf="paises && paises.length > 0">
+    <li *ngFor="let pais of paises" class="list-group-item" [id]="pais.name">
+      <input
+        class="form-check-input me-1"
+        type="radio"
+        name="listGroupRadio"
+        [id]="'radio-' + pais.name"
+        (click)="handleSelect(pais.name)"
+      />
+      <img [src]="pais.flag" alt="{{ pais.name }}" width="30" height="20" />
+      <span class="ml-2">{{ pais.name }}</span>
+    </li>
+  </ul>
+  <p *ngIf="!paises || paises.length === 0">
+    No se encontraron países por el momento.
+  </p>
+</div>

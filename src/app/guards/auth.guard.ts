@@ -8,7 +8,8 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const isLogged = firebaseAuth.isAuthenticated();
   if (!isLogged) {
-    router.navigateByUrl('');
+    alert('Tiene que estar logueado para entrar en esta pagina');
+    router.navigateByUrl('login');
   }
   return isLogged;
 };

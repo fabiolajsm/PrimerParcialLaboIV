@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Paises } from '../../interfaces/paises.interface';
-import { PaisesService } from '../../services/paises.service';
+import { Paises } from '../../../interfaces/paises.interface';
+import { PaisesService } from '../../../services/paises.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,7 +23,6 @@ export class TableComponent {
       this.paises = paises;
       this.isLoading = false;
     });
-    console.log(this.paises, 'paisess');
   }
 
   handleSelect(optionName: string) {

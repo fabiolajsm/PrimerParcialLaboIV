@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { Paises } from '../interfaces/paises.interface';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class PaisesService {
 
   getData(): Observable<Paises[]> {
     return this.http.get<any[]>(this.url).pipe(
+      take(10),
       map((response: any[]) => {
         const list: Paises[] = [];
         response.forEach((result: any) => {

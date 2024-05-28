@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { adminGuard } from './guards/admin.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -16,9 +17,19 @@ export const routes: Routes = [
   {
     path: 'create',
     loadComponent: () =>
-      import('./components/create/create.component').then(
+      import('./components/createComponent/create/create.component').then(
         (c) => c.CreateComponent
       ),
     title: 'Alta Repartidor',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'detail',
+    loadComponent: () =>
+      import('./components/detailComponent/detail/detail.component').then(
+        (c) => c.DetailComponent
+      ),
+    title: 'Detalle Repartidor',
+    canActivate: [authGuard],
   },
 ];

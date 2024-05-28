@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
+  CollectionReference,
   Firestore,
   addDoc,
   collection,
   collectionData,
+  query,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Delivery } from '../interfaces/delivery.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +17,13 @@ export class CreateService {
   collectionName: string = 'repartidores';
   constructor(private firestore: Firestore) {}
 
-  getDeliveryPersons(): Observable<[]> {
-    const deliveryPersons = collection(this.firestore, this.collectionName);
-    return collectionData(deliveryPersons) as Observable<[]>;
+  getDeliveryPersons(): Observable<Delivery[]> {
+    const deliveryRef: CollectionReference = collection(
+      this.firestore,
+      this.collectionName
+    );
+    const deliveryQuery = query(deliveryRef);
+    return collectionData(deliveryQuery) as Observable<Delivery[]>;
   }
 
   updateDeliveryPersons(
@@ -24,14 +31,14 @@ export class CreateService {
     dni: string,
     age: string,
     transportCapacity: string,
-    ownUnit: string,
+    ownUnit: boolean,
     country: string
   ) {
-    let newDeliveryPerson = {
+    let newDeliveryPerson: Delivery = {
       name: name,
       dni: dni,
-      age: age,
-      transportCapacity: transportCapacity,
+      age: Number(age),
+      transportCapacity: Number(transportCapacity),
       ownUnit: ownUnit,
       country: country,
     };

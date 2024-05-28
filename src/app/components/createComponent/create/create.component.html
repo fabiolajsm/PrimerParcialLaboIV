@@ -10,6 +10,13 @@
     />
 
     <div class="col-md-8 order-md-1">
+      <!-- Mensajes de error y éxito -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
       <h4 class="mb-3">Ingrese los datos:</h4>
       <form
         class="needs-validation"
@@ -69,14 +76,6 @@
           />
         </div>
 
-        <!-- Mensajes de error y éxito -->
-        <div *ngIf="errorMessage" class="alert alert-danger">
-          {{ errorMessage }}
-        </div>
-        <div *ngIf="successMessage" class="alert alert-success">
-          {{ successMessage }}
-        </div>
-
         <h4 class="mb-3">¿Es unidad propia?</h4>
         <div class="custom-control custom-radio">
           <input
@@ -104,7 +103,6 @@
           />
           <label class="custom-control-label" for="unit2">No</label>
         </div>
-
         <hr class="mb-4" />
         <button class="btn btn-primary btn-lg btn-block" type="submit">
           Crear

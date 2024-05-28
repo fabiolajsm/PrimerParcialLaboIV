@@ -1,0 +1,18 @@
+<section class="py-5 text-center" style="background-color: #f8f9fa">
+  <div class="container">
+    <h1 class="jumbotron-heading">Detalle del Repartidor Seleccionado</h1>
+    <div *ngIf="itemDetail; else noItemSelected">
+      <p>Nombre: {{ itemDetail.name }}</p>
+      <p>DNI: {{ itemDetail.dni }}</p>
+      <p>Edad: {{ itemDetail.age }}</p>
+      <p>Capacidad de Transporte: {{ itemDetail.transportCapacity }}</p>
+      <p>Unidad Propia: {{ itemDetail.ownUnit ? "Sí" : "No" }}</p>
+      <p>Pais de Origen: {{ itemDetail.country }}</p>
+    </div>
+    <ng-template #noItemSelected>
+      <div class="d-flex justify-content-center">
+        <h4>No seleccionó ningún repartidor.</h4>
+      </div>
+    </ng-template>
+  </div>
+</section>

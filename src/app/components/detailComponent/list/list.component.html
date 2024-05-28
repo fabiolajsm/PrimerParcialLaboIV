@@ -1,0 +1,16 @@
+<section class="py-5 text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Listado de Repartidores</h1>
+    <ng-container *ngIf="items && items.length > 0; else noItems">
+      <select class="form-select" (change)="handleSelect($event)">
+        <option value="" disabled selected>Selecciona un repartidor</option>
+        <option *ngFor="let item of items" [value]="item.name">
+          {{ item.name }}
+        </option>
+      </select>
+    </ng-container>
+    <ng-template #noItems>
+      <p>No hay repartidores disponibles.</p>
+    </ng-template>
+  </div>
+</section>

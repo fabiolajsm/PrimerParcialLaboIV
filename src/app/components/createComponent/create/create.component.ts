@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CreateService } from '../../services/create.service';
+import { CreateService } from '../../../services/create.service';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table/table.component';
 
@@ -80,7 +80,7 @@ export class CreateComponent {
         this.dni?.value,
         this.age?.value,
         this.transportCapacity?.value,
-        this.ownUnit!,
+        this.ownUnit === 'true',
         this.country!
       );
       this.showSuccessMessage();
