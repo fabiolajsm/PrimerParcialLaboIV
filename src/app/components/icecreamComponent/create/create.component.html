@@ -1,1 +1,75 @@
-<p>create works!</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="createNewItem()"
+  class="formulario container-fluid"
+>
+  <div class="form-floating form-control-group p-2">
+    <label class="form-label" for="flavorName">Nombre del sabor</label>
+    <input
+      required
+      type="text"
+      class="form-control"
+      id="flavorName"
+      formControlName="flavorName"
+    />
+  </div>
+
+  <div class="form-check form-control-group p-2">
+    <input
+      required
+      type="checkbox"
+      class="form-check-input"
+      id="waterType"
+      value="agua"
+      formControlName="type"
+      (change)="checkType($event)"
+    />
+    <label class="form-check-label" for="type">Agua</label>
+  </div>
+
+  <div class="form-check form-control-group p-2">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="creamType"
+      formControlName="type"
+      (change)="checkType($event)"
+      value="crema"
+    />
+    <label class="form-check-label" for="type">Crema</label>
+  </div>
+
+  <div class="form-floating form-control-group p-2">
+    <input
+      required
+      type="number"
+      class="form-control"
+      id="price"
+      formControlName="price"
+    />
+    <label class="form-label" for="price">Precio</label>
+  </div>
+
+  <div class="form-floating form-control-group p-2">
+    <input
+      required
+      type="number"
+      class="form-control"
+      id="weight"
+      formControlName="weight"
+    />
+    <label class="form-label" for="weight">Peso</label>
+  </div>
+
+  <div class="d-grid gap-2 col-8 mx-auto">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+  <br /><br />
+
+  <p *ngIf="successMessage != undefined" class="alert alert-success mb-auto">
+    {{ successMessage }}
+  </p>
+  <p *ngIf="errorMessage != undefined" class="alert alert-danger mb-auto">
+    {{ errorMessage }}
+  </p>
+</form>

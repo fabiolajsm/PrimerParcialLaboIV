@@ -1,12 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { IceCream } from '../../../interfaces/icecream.interface';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss',
 })
@@ -15,6 +20,7 @@ export class CreateComponent {
   @Output() newItem = new EventEmitter<any>();
   errorMessage: string | undefined;
   successMessage: string | undefined;
+  icecreamType: string | undefined = undefined;
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -30,9 +36,13 @@ export class CreateComponent {
       ]),
     });
   }
+  checkType(event: any) {
+    this.icecreamType =
+      event.target.value !== 'invalid' ? event.target.value : undefined;
+  }
 
   createNewItem(): void {
-    if (this.form.valid) {
+    if (this.validateInputs()) {
       const newData: IceCream = {
         flavorName: this.form.value.flavorName,
         type: this.form.value.type,
@@ -46,6 +56,30 @@ export class CreateComponent {
     }
   }
 
+  validateInputs(): boolean {
+    if (!this.flavorName?.valid) {
+      this.errorMessage = "El campo 'Nombre del sabor' es inválido.";
+      this.showErrorMessage();
+      return false;
+    }
+    if (!this.icecreamType) {
+      this.errorMessage = 'Debe seleccionar un tipo';
+      this.showErrorMessage();
+      return false;
+    }
+    if (!this.price?.valid) {
+      this.errorMessage = "El campo 'Precio' es inválido.";
+      this.showErrorMessage();
+      return false;
+    }
+    if (!this.weight?.valid) {
+      this.errorMessage = "El campo 'Peso' es inválido.";
+      this.showErrorMessage();
+      return false;
+    }
+    return true;
+  }
+
   showSuccessMessage(): void {
     this.successMessage = 'The pizza was created successfully.';
     setTimeout(() => {
@@ -54,7 +88,6 @@ export class CreateComponent {
   }
 
   showErrorMessage(): void {
-    this.errorMessage = 'Some fields are invalid. Please check and try again.';
     setTimeout(() => {
       this.errorMessage = undefined;
     }, 2500);
