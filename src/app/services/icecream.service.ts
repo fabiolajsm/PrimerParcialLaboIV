@@ -37,8 +37,8 @@ export class IceCreamService {
   }
 
   updateData(id: string, type: IceCreamType, price: number, weight: number) {
-    let pizzaRef = doc(this.firestore, this.collectionName, id);
-    updateDoc(pizzaRef, {
+    let dataRef = doc(this.firestore, this.collectionName, id);
+    updateDoc(dataRef, {
       type: type,
       price: price,
       weight: weight,
@@ -46,7 +46,7 @@ export class IceCreamService {
   }
 
   deleteData(id: string) {
-    const dataRef = doc(this.firestore, 'pizzas', id);
+    const dataRef = doc(this.firestore, this.collectionName, id);
     deleteDoc(dataRef);
   }
 }
