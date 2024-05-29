@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IceCream } from '../../../interfaces/icecream.interface';
 import { CommonModule } from '@angular/common';
+import { IceCreamService } from '../../../services/icecream.service';
 
 @Component({
   selector: 'app-delete',
@@ -11,4 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class DeleteComponent {
   @Input() item: IceCream | undefined;
+
+  constructor(private icecreamService: IceCreamService) {}
+
+  handleDelete() {
+    this.icecreamService.deleteData(this.item?.id!);
+    this.item = undefined;
+  }
 }
