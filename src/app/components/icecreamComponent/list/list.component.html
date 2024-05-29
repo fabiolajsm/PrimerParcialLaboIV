@@ -7,7 +7,9 @@
           *ngFor="let item of items"
           class="list-group-item d-flex justify-content-between align-items-center"
         >
-          {{ item.flavorName }}
+          {{ item.flavorName.toUpperCase() }} - Tipo: {{ item.type }} - Precio:
+          $ {{ item.price }} - Peso:
+          {{ item.weight }}
           <button class="btn btn-primary" (click)="handleClick(item)">
             Seleccionar
           </button>

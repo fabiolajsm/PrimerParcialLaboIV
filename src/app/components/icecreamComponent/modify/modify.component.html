@@ -1,1 +1,78 @@
-<p>modify works!</p>
+<div *ngIf="!item">
+  <p>No se ha seleccionado un helado.</p>
+</div>
+
+<form
+  [formGroup]="form"
+  (ngSubmit)="updateItem()"
+  class="formulario container-fluid"
+  *ngIf="item"
+>
+  <p>Helado seleccionado: {{ item.flavorName }}</p>
+
+  <div class="custom-control custom-radio">
+    <input
+      id="type1"
+      name="type"
+      type="radio"
+      class="custom-control-input"
+      value="agua"
+      required
+      (change)="checkType($event)"
+      formControlName="type"
+      [checked]="item.type === 'agua'"
+    />
+    <label class="custom-control-label" for="type1">Agua</label>
+  </div>
+
+  <div class="custom-control custom-radio">
+    <input
+      id="type2"
+      name="type"
+      type="radio"
+      class="custom-control-input"
+      value="crema"
+      required
+      (change)="checkType($event)"
+      formControlName="type"
+      [checked]="item.type === 'crema'"
+    />
+    <label class="custom-control-label" for="type2">Crema</label>
+  </div>
+
+  <div class="form-floating form-control-group p-2">
+    <input
+      required
+      type="number"
+      class="form-control"
+      id="price"
+      formControlName="price"
+      [value]="item.price"
+    />
+    <label class="form-label" for="price">Precio</label>
+  </div>
+
+  <div class="form-floating form-control-group p-2">
+    <input
+      required
+      type="number"
+      class="form-control"
+      id="weight"
+      formControlName="weight"
+      [value]="item.weight"
+    />
+    <label class="form-label" for="weight">Peso</label>
+  </div>
+
+  <div class="d-grid gap-2 col-8 mx-auto">
+    <button type="submit" class="btn btn-primary">Modificar</button>
+  </div>
+  <br /><br />
+
+  <p *ngIf="successMessage" class="alert alert-success mb-auto">
+    {{ successMessage }}
+  </p>
+  <p *ngIf="errorMessage" class="alert alert-danger mb-auto">
+    {{ errorMessage }}
+  </p>
+</form>

@@ -39,7 +39,7 @@ export const routes: Routes = [
         (c) => c.IcecreamComponent
       ),
     title: 'Salen helados',
-   // canMatch: [authGuard, adminGuard],
+    canMatch: [authGuard, adminGuard],
   },
   {
     path: '**',
