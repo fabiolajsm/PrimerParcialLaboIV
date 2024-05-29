@@ -33,6 +33,15 @@ export const routes: Routes = [
     canMatch: [authGuard],
   },
   {
+    path: 'icecream',
+    loadComponent: () =>
+      import('./components/icecreamComponent/icecream/icecream.component').then(
+        (c) => c.IcecreamComponent
+      ),
+    title: 'Salen helados',
+   // canMatch: [authGuard, adminGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./components/error/error.component').then(

@@ -34,7 +34,7 @@ export class CreateService {
     ownUnit: boolean,
     country: string
   ) {
-    let newDeliveryPerson: Delivery = {
+    const newDeliveryPerson: Delivery = {
       name: name,
       dni: dni,
       age: Number(age),
@@ -42,7 +42,7 @@ export class CreateService {
       ownUnit: ownUnit,
       country: country,
     };
-    let deliveryPersonsRef = collection(this.firestore, this.collectionName);
+    const deliveryPersonsRef = collection(this.firestore, this.collectionName);
     addDoc(deliveryPersonsRef, newDeliveryPerson);
   }
 }
