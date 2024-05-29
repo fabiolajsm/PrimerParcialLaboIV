@@ -14,29 +14,31 @@
     />
   </div>
 
-  <div class="form-check form-control-group p-2">
+  <div class="custom-control custom-radio">
     <input
-      required
-      type="checkbox"
-      class="form-check-input"
-      id="waterType"
+      id="type1"
+      name="type"
+      type="radio"
+      class="custom-control-input"
       value="agua"
-      formControlName="type"
+      required
       (change)="checkType($event)"
+      formControlName="type"
     />
-    <label class="form-check-label" for="type">Agua</label>
+    <label class="custom-control-label" for="type1">Agua</label>
   </div>
-
-  <div class="form-check form-control-group p-2">
+  <div class="custom-control custom-radio">
     <input
-      type="checkbox"
-      class="form-check-input"
-      id="creamType"
-      formControlName="type"
-      (change)="checkType($event)"
+      id="type2"
+      name="type"
+      type="radio"
+      class="custom-control-input"
       value="crema"
+      required
+      (change)="checkType($event)"
+      formControlName="type"
     />
-    <label class="form-check-label" for="type">Crema</label>
+    <label class="custom-control-label" for="type2">Crema</label>
   </div>
 
   <div class="form-floating form-control-group p-2">

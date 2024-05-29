@@ -36,15 +36,16 @@ export class CreateComponent {
       ]),
     });
   }
+
   checkType(event: any) {
-    this.icecreamType =
-      event.target.value !== 'invalid' ? event.target.value : undefined;
+    const selectedType = event.target.value;
+    this.icecreamType = event.target.checked ? selectedType : undefined;
   }
 
   createNewItem(): void {
     if (this.validateInputs()) {
       const newData: IceCream = {
-        flavorName: this.form.value.flavorName,
+        flavorName: this.form.value.flavorName.toLowerCase(),
         type: this.form.value.type,
         price: parseFloat(this.form.value.price),
         weight: parseFloat(this.form.value.weight),
@@ -81,7 +82,8 @@ export class CreateComponent {
   }
 
   showSuccessMessage(): void {
-    this.successMessage = 'The pizza was created successfully.';
+    this.successMessage = 'Fue creado exitosamente!';
+    this.form.reset();
     setTimeout(() => {
       this.successMessage = undefined;
     }, 2500);
