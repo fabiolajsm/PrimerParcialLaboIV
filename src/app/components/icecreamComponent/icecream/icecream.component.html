@@ -9,12 +9,7 @@
 
       <div class="p-1 mb-4 bg-body-tertiary rounded-3">
         <div class="container-fluid py-2">
-          <h1 class="d-flex justify-content-center border-bottom">
-            Listado de Helados
-          </h1>
-          <div class="tabla">
-            <app-list (selectedItem)="handleItemSelected($event)" />
-          </div>
+          <app-list (selectedItem)="handleItemSelected($event)" />
         </div>
       </div>
 
