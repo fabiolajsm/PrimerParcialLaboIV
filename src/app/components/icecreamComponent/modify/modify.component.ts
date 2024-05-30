@@ -14,7 +14,6 @@ import { IceCreamService } from '../../../services/icecream.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './modify.component.html',
-  styleUrl: './modify.component.scss',
 })
 export class ModifyComponent {
   @Input() item: IceCream | undefined;
@@ -30,23 +29,15 @@ export class ModifyComponent {
       type: new FormControl('', [Validators.required]),
       price: new FormControl('', [
         Validators.required,
+        Validators.min(1),
         Validators.pattern(/^\d+(\.\d{1,2})?$/),
       ]),
       weight: new FormControl('', [
         Validators.required,
+        Validators.min(1),
         Validators.pattern(/^\d+(\.\d{1,2})?$/),
       ]),
     });
-  }
-
-  ngOnChanges() {
-    if (this.item) {
-      this.form.setValue({
-        type: this.item.type,
-        price: this.item.price,
-        weight: this.item.weight,
-      });
-    }
   }
 
   checkType(event: any) {

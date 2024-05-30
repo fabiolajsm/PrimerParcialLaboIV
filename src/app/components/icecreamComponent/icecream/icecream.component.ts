@@ -11,7 +11,6 @@ import { IceCreamService } from '../../../services/icecream.service';
   standalone: true,
   imports: [CreateComponent, DeleteComponent, ModifyComponent, ListComponent],
   templateUrl: './icecream.component.html',
-  styleUrl: './icecream.component.scss',
 })
 export class IcecreamComponent {
   selectedItem: IceCream | undefined = undefined;

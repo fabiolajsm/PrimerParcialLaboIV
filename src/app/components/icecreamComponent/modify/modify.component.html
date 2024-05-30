@@ -10,34 +10,31 @@
 >
   <p>Helado seleccionado: {{ item.flavorName }}</p>
 
-  <div class="custom-control custom-radio">
+  <div class="form-check">
     <input
+      class="form-check-input"
+      type="radio"
       id="type1"
       name="type"
-      type="radio"
-      class="custom-control-input"
       value="agua"
       required
       (change)="checkType($event)"
       formControlName="type"
-      [checked]="item.type === 'agua'"
     />
-    <label class="custom-control-label" for="type1">Agua</label>
+    <label class="form-check-label" for="type1"> Agua </label>
   </div>
-
-  <div class="custom-control custom-radio">
+  <div class="form-check">
     <input
+      class="form-check-input"
       id="type2"
       name="type"
       type="radio"
-      class="custom-control-input"
       value="crema"
       required
       (change)="checkType($event)"
       formControlName="type"
-      [checked]="item.type === 'crema'"
     />
-    <label class="custom-control-label" for="type2">Crema</label>
+    <label class="form-check-label" for="type2"> Crema </label>
   </div>
 
   <div class="form-floating form-control-group p-2">

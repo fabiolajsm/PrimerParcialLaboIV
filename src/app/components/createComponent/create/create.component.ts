@@ -88,7 +88,7 @@ export class CreateComponent {
   }
 
   checkUnit(event: any) {
-    const value = event.target.value;
+    const value = event.target.value;    
     this.ownUnit = event.target.checked ? value : undefined;
   }
 

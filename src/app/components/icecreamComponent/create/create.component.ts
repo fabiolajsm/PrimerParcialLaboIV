@@ -13,7 +13,6 @@ import { IceCream } from '../../../interfaces/icecream.interface';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.scss',
 })
 export class CreateComponent {
   form!: FormGroup;
@@ -24,14 +23,19 @@ export class CreateComponent {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      flavorName: new FormControl('', [Validators.required]),
+      flavorName: new FormControl('', [
+        Validators.pattern('^[a-zA-Z]+$'),
+        Validators.required,
+      ]),
       type: new FormControl('', [Validators.required]),
       price: new FormControl('', [
         Validators.required,
+        Validators.min(1),
         Validators.pattern(/^\d+(\.\d{1,2})?$/),
       ]),
       weight: new FormControl('', [
         Validators.required,
+        Validators.min(1),
         Validators.pattern(/^\d+(\.\d{1,2})?$/),
       ]),
     });
@@ -59,7 +63,8 @@ export class CreateComponent {
 
   validateInputs(): boolean {
     if (!this.flavorName?.valid) {
-      this.errorMessage = "El campo 'Nombre del sabor' es inválido.";
+      this.errorMessage =
+        "El campo 'Nombre del sabor' es inválido, tiene que ingresar sólo letras, sin caracteres especiales.";
       this.showErrorMessage();
       return false;
     }
@@ -69,12 +74,14 @@ export class CreateComponent {
       return false;
     }
     if (!this.price?.valid) {
-      this.errorMessage = "El campo 'Precio' es inválido.";
+      this.errorMessage =
+        "El campo 'Precio' es inválido, tiene que ingresar un número mayor a cero.";
       this.showErrorMessage();
       return false;
     }
     if (!this.weight?.valid) {
-      this.errorMessage = "El campo 'Peso' es inválido.";
+      this.errorMessage =
+        "El campo 'Peso' es inválido, tiene que ingresar un número mayor a cero.";
       this.showErrorMessage();
       return false;
     }

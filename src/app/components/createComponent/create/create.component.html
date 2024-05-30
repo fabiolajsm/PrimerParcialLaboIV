@@ -79,22 +79,22 @@
         <div class="form-check">
           <input
             class="form-check-input"
-            type="checkbox"
-            id="unit"
+            type="radio"
+            id="unit1"
             name="ownUnit"
             value="true"
             required
             (change)="checkUnit($event)"
             formControlName="ownUnit"
           />
-          <label class="form-check-label" for="unit"> Sí </label>
+          <label class="form-check-label" for="unit1"> Sí </label>
         </div>
         <div class="form-check">
           <input
             class="form-check-input"
             id="unit2"
             name="ownUnit"
-            type="checkbox"
+            type="radio"
             value="false"
             required
             (change)="checkUnit($event)"

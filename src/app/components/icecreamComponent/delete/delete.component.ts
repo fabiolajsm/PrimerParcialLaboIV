@@ -8,7 +8,6 @@ import { IceCreamService } from '../../../services/icecream.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delete.component.html',
-  styleUrl: './delete.component.scss',
 })
 export class DeleteComponent {
   @Input() item: IceCream | undefined;

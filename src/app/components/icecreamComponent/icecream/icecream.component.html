@@ -2,7 +2,7 @@
   <main>
     <div class="container py-4">
       <header class="pb-3 mb-4 border-bottom">
-        <a class="d-flex align-items-center text-dark text-decoration-none">
+        <a class="d-flex align-items-center text-decoration-none">
           <span class="fs-4">Salen Helados</span>
         </a>
       </header>
@@ -15,21 +15,21 @@
 
       <div class="row align-items-md-stretch">
         <div class="col-md-4">
-          <div class="p-3 text-bg-dark rounded-3">
+          <div class="p-3 text-dark bg-light rounded-3">
             <h3>Crear Helado</h3>
             <app-create (newItem)="createNewItem($event)" />
           </div>
         </div>
 
         <div class="col-md-4">
-          <div class="p-3 text-bg-dark rounded-3">
+          <div class="p-3 text-dark bg-light rounded-3">
             <h3>Modificar Helado</h3>
             <app-modify [item]="selectedItem" />
           </div>
         </div>
 
         <div class="col-md-4">
-          <div class="p-3 text-bg-dark rounded-3">
+          <div class="p-3 text-dark bg-light rounded-3">
             <h3>Borrar Helado</h3>
             <app-delete [item]="selectedItem" />
           </div>

@@ -1,8 +1,8 @@
 <div *ngIf="item == undefined" class="d-flex justify-content-center">
-  <h4>No seleccionó ningun helado</h4>
+  <p>No seleccionó ningun helado</p>
 </div>
 <div *ngIf="item != undefined">
-  <p>Nombre de sabor del helado: {{ item.flavorName }}</p>
+  <p>Nombre de sabor del helado a borrar: {{ item.flavorName }}</p>
   <div class="d-grid gap-2 col-8 mx-auto">
     <button type="submit" class="btn btn-primary" (click)="handleDelete()">
       Borrar
