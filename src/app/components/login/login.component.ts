@@ -60,21 +60,18 @@ export class LoginComponent {
       });
   }
   handleQuickAccess(): void {
+    this.form.reset();
     this.spinner.show();
-    const quickAccessUsers = [
-      'uno@gmail.com',
-      'dos@gmail.com',
-      'tres@gmail.com',
-    ];
+    const quickAccessUsers = ['empleado@gmail.com', 'admin@gmail.com'];
     const emailSelected =
       quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
 
     this.authService.getUsers().subscribe((userData: UserInterface[]) => {
-      userData.forEach((usuario) => {
-        if ((usuario as any).email == emailSelected) {
-          this.form.controls['email'].setValue((usuario as any).email);
-          this.form.controls['password'].setValue((usuario as any).contraseña);
-          this.role = (usuario as any).rol;
+      userData.forEach((user) => {
+        if ((user as any).email == emailSelected) {
+          this.form.controls['email'].setValue((user as any).email);
+          this.form.controls['password'].setValue((user as any).password);
+          this.role = (user as any).role;
           this.spinner.hide();
         }
       });

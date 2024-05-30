@@ -7,7 +7,7 @@ import { Welcome } from '../interfaces/welcome.interface';
   providedIn: 'root',
 })
 export class WelcomeService {
-  private url = 'https://api.github.com/users/octaviovillegas';
+  private url = 'https://api.github.com/users/fabiolajsm';
 
   constructor(private http: HttpClient) {}
 

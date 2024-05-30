@@ -1,6 +1,8 @@
+export type TYPE_ROLE = "empleado" | "admin"
+
 export interface UserInterface {
   email: string;
   user: string;
-  rol: string;
-  contraseña?: string;
+  role: TYPE_ROLE;
+  password?: string;
 }
