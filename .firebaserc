@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "primerparciallaboiv-28155"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
