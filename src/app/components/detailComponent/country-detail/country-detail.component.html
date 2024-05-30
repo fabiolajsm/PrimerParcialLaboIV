@@ -1,21 +1,29 @@
-<h1 class="jumbotron-heading">Detalle del pais</h1>
-<div
-  *ngIf="!country"
-  class="py-5 text-center"
-  style="border: 1px solid #dee2e6"
->
-  <div class="container">
-    <p>No hay ningún país seleccionado aún.</p>
+<div class="card">
+  <div class="card-body">
+    <ng-container *ngIf="!country; else countrySelected">
+      <div class="py-5 text-center border">
+        <div class="container">
+          <p>No hay ningún país seleccionado aún.</p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #countrySelected>
+      <h1 class="jumbotron-heading">Detalle del país</h1>
+      <section class="py-5 text-center border">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col">
+              <h1 class="jumbotron-heading">{{ country?.name }}</h1>
+            </div>
+            <div class="col">
+              <img
+                [src]="country?.flag"
+                alt="{{ country?.name }}"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-template>
   </div>
 </div>
-
-<section
-  *ngIf="country"
-  class="py-5 text-center"
-  style="border: 1px solid #dee2e6"
->
-  <div class="container">
-    <h1 class="jumbotron-heading">{{ country.name }}</h1>
-    <img [src]="country.flag" alt="{{ country.name }}" width="30" height="20" />
-  </div>
-</section>

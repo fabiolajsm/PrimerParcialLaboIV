@@ -1,18 +1,16 @@
-<section class="py-5 text-center" style="background-color: #f8f9fa">
-  <div class="container">
-    <h1 class="jumbotron-heading">Detalle del Repartidor Seleccionado</h1>
-    <div *ngIf="itemDetail; else noItemSelected">
-      <p>Nombre: {{ itemDetail.name }}</p>
-      <p>DNI: {{ itemDetail.dni }}</p>
-      <p>Edad: {{ itemDetail.age }}</p>
-      <p>Capacidad de Transporte: {{ itemDetail.transportCapacity }}</p>
-      <p>Unidad Propia: {{ itemDetail.ownUnit ? "Sí" : "No" }}</p>
-      <p>Pais de Origen: {{ itemDetail.country }}</p>
-    </div>
-    <ng-template #noItemSelected>
-      <div class="d-flex justify-content-center">
-        <h4>No seleccionó ningún repartidor.</h4>
-      </div>
-    </ng-template>
+<div class="card bg-dark text-light">
+  <div class="card-body" *ngIf="itemDetail; else noItemSelected">
+    <h1 class="display-4 mb-4">Detalle del Repartidor Seleccionado</h1>
+    <p class="mb-2"><strong>Nombre:</strong> {{ itemDetail.name }}</p>
+    <p class="mb-2"><strong>DNI:</strong> {{ itemDetail.dni }}</p>
+    <p class="mb-2"><strong>Edad:</strong> {{ itemDetail.age }}</p>
+    <p class="mb-2"><strong>Capacidad de Transporte:</strong> {{ itemDetail.transportCapacity }}</p>
+    <p class="mb-2"><strong>Unidad Propia:</strong> {{ itemDetail.ownUnit ? "Sí" : "No" }}</p>
+    <p class="mb-2"><strong>País de Origen:</strong> {{ itemDetail.country }}</p>
   </div>
-</section>
+  <ng-template #noItemSelected>
+    <div class="card-body d-flex justify-content-center align-items-center">
+      <p class="text-center">No seleccionó ningún repartidor.</p>
+    </div>
+  </ng-template>
+</div>

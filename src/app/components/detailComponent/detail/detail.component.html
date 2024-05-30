@@ -1,5 +1,6 @@
 <div class="container">
   <app-list (itemSelected)="handleSelected($event)" />
   <app-delivery-detail [itemDetail]="itemSelected" />
+  <br />
   <app-country-detail [countryName]="countryName" />
 </div>

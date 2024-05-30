@@ -8,11 +8,10 @@ import { CreateService } from '../../../services/create.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
 })
 export class ListComponent {
   @Output() itemSelected = new EventEmitter<Delivery>();
-  constructor(private deliveryService: CreateService) {} // Cambiar nombre del servicio
+  constructor(private deliveryService: CreateService) {}
   items: Delivery[] = [];
   isLoading: boolean = false;
 

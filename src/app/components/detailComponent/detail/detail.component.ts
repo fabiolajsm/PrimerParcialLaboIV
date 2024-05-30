@@ -15,7 +15,6 @@ import { Delivery } from '../../../interfaces/delivery.interface';
     CountryDetailComponent,
   ],
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
   itemSelected: Delivery | undefined = undefined;

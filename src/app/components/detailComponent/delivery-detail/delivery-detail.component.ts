@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delivery-detail.component.html',
-  styleUrl: './delivery-detail.component.scss',
 })
 export class DeliveryDetailComponent {
   @Input() itemDetail: Delivery | undefined;

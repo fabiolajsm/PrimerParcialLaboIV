@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './country-detail.component.html',
-  styleUrl: './country-detail.component.scss',
 })
 export class CountryDetailComponent {
   isLoading: boolean = true;
