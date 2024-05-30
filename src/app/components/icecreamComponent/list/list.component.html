@@ -16,8 +16,11 @@
         </li>
       </ul>
     </div>
-    <div class="col" *ngIf="!items || items.length === 0">
+    <div class="col" *ngIf="(!items || items.length === 0) && !isLoading">
       <p>No hay helados disponibles.</p>
+    </div>
+    <div class="col" *ngIf="isLoading">
+      <p>Cargando...</p>
     </div>
   </div>
 </div>

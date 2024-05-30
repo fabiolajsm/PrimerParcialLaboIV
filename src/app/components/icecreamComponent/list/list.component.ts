@@ -14,12 +14,15 @@ export class ListComponent {
   @Output() selectedItem = new EventEmitter<IceCream>();
   dataSource: any;
   items!: IceCream[];
+  isLoading: boolean = false;
 
   constructor(private icecreamService: IceCreamService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.icecreamService.getData().subscribe((result) => {
       this.items = result;
+      this.isLoading = false;
     });
   }
 

@@ -14,10 +14,13 @@ export class ListComponent {
   @Output() itemSelected = new EventEmitter<Delivery>();
   constructor(private deliveryService: CreateService) {} // Cambiar nombre del servicio
   items: Delivery[] = [];
+  isLoading: boolean = false;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.deliveryService.getDeliveryPersons().subscribe((response) => {
       this.items = response;
+      this.isLoading = false;
     });
   }
 
