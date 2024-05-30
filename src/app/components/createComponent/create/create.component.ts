@@ -34,8 +34,8 @@ export class CreateComponent {
       dni: new FormControl('', [
         Validators.pattern('^[0-9]*$'),
         Validators.pattern('^[0-9]*$'),
-        Validators.minLength(8),
-        Validators.maxLength(8),
+        Validators.minLength(9),
+        Validators.maxLength(10),
         Validators.required,
       ]),
       age: new FormControl('', [
@@ -45,6 +45,7 @@ export class CreateComponent {
         Validators.required,
       ]),
       transportCapacity: new FormControl('', [
+        Validators.min(1),
         Validators.pattern('^[0-9]*$'),
         Validators.required,
       ]),
@@ -70,7 +71,6 @@ export class CreateComponent {
   }
   getOptionSelected(option: string) {
     this.country = option;
-    
   }
 
   createDeliveryPerson() {
@@ -88,28 +88,32 @@ export class CreateComponent {
   }
 
   checkUnit(event: any) {
-    this.ownUnit =
-      event.target.value !== 'invalid' ? event.target.value : undefined;
+    const value = event.target.value;
+    this.ownUnit = event.target.checked ? value : undefined;
   }
 
   validateInputs(): boolean {
     if (!this.name?.valid) {
-      this.errorMessage = "El campo 'Nombre' es inválido.";
+      this.errorMessage =
+        "El campo 'Nombre' es inválido, tiene que ingresar sólo letras, sin caracteres especiales.";
       this.showMessage(this.errorMessage);
       return false;
     }
     if (!this.dni?.valid) {
-      this.errorMessage = "El campo 'DNI' es inválido.";
+      this.errorMessage =
+        "El campo 'DNI' es inválido, tienen que ser de 9 a 11 caracteres.";
       this.showMessage(this.errorMessage);
       return false;
     }
     if (!this.age?.valid) {
-      this.errorMessage = "El campo 'Edad' es inválido.";
+      this.errorMessage =
+        "El campo 'Edad' es inválido, tiene que ser un número entero entre 18 y 99.";
       this.showMessage(this.errorMessage);
       return false;
     }
     if (!this.transportCapacity?.valid) {
-      this.errorMessage = "El campo 'Capacidad de Transporte' es inválido.";
+      this.errorMessage =
+        "El campo 'Capacidad de Transporte' es inválido, tiene que ingresar un número mayor a cero.";
       this.showMessage(this.errorMessage);
       return false;
     }

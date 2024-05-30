@@ -76,32 +76,33 @@
         </div>
 
         <h4 class="mb-3">¿Es unidad propia?</h4>
-        <div class="custom-control custom-radio">
+        <div class="form-check">
           <input
+            class="form-check-input"
+            type="checkbox"
             id="unit"
             name="ownUnit"
-            type="radio"
-            class="custom-control-input"
             value="true"
             required
             (change)="checkUnit($event)"
             formControlName="ownUnit"
           />
-          <label class="custom-control-label" for="unit">Sí</label>
+          <label class="form-check-label" for="unit"> Sí </label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="form-check">
           <input
+            class="form-check-input"
             id="unit2"
             name="ownUnit"
-            type="radio"
-            class="custom-control-input"
+            type="checkbox"
             value="false"
             required
             (change)="checkUnit($event)"
             formControlName="ownUnit"
           />
-          <label class="custom-control-label" for="unit2">No</label>
+          <label class="form-check-label" for="unit2"> No </label>
         </div>
+
         <hr class="mb-4" />
         <h6 class="mb-3" *ngIf="country">
           País de origen seleccionado: {{ country }}
