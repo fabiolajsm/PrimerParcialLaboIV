@@ -70,6 +70,7 @@ export class CreateComponent {
   }
   getOptionSelected(option: string) {
     this.country = option;
+    
   }
 
   createDeliveryPerson() {

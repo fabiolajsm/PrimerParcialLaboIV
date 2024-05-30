@@ -8,7 +8,6 @@
       class="col-md-4 order-md-2 mb-4"
       (optionSelected)="getOptionSelected($event)"
     />
-
     <div class="col-md-8 order-md-1">
       <!-- Mensajes de error y éxito -->
       <div *ngIf="errorMessage" class="alert alert-danger">
@@ -104,6 +103,10 @@
           <label class="custom-control-label" for="unit2">No</label>
         </div>
         <hr class="mb-4" />
+        <h6 class="mb-3" *ngIf="country">
+          País de origen seleccionado: {{ country }}
+        </h6>
+
         <button class="btn btn-primary btn-lg btn-block" type="submit">
           Crear
         </button>
